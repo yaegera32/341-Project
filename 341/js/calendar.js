@@ -1,5 +1,5 @@
-var monthName = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-var monthNum = {January:0, February:1, March:2, April:3, May:4, June:5, July:6, August:7, September:8, October:9, November:10, December:11};
+var monthName = ['','January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+var monthNum = {January:1, February:2, March:3, April:4, May:5, June:6, July:7, August:8, September:9, October:10, November:11, December:12};
 var openTime = ['8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00'];
 var month;
 var year;
@@ -20,6 +20,7 @@ var fillAppts = function(){
 		method: "GET",
 		url: "php/getAppt.php",
 		success: function(data){
+					console.log(data);
 					data = JSON.parse(data);
 					data.forEach(function(appt){
 						var date = new Date(appt['date']);
@@ -75,6 +76,7 @@ var edtDayApt = function(monthPoll, yearPoll, dayPoll){
 	else{
 		daySend = dayPoll;
 	}
+
 	for(var i=0; i<openTime.length-1; i++){
 		var min = '00';
 		if(i%2 == 1){
@@ -101,18 +103,18 @@ var addToList = function(start52, end52, data52){
 	//console.log(data);
 	data52 = JSON.parse(data52);
 	data52.forEach(function(appt52){
-		if(appt52['dentist']!=null){
-			$('<li><button onclick="createApptment(\''+start52+'\', \''+end52+'\', '+appt52['dentist']+')">'+start52+' Dentist ID:'+appt52['dentist']+'</button></li>').appendTo($('#Appts'));
+		if(appt52['hygienist']!=null){
+			$('<li><button onclick="createApptment(\''+start52+'\', \''+end52+'\', '+appt52['hygienist']+')">'+start52+' Dentist ID: 6 </button></li>').appendTo($('#Appts'));
 		}
 	});
 }
 
 var createApptment = function(start1, end1, dent1){
-	console.log("attempt to make appointment");
+	console.log("month = "+$('#monthApt').val());
 	$.ajax({
 		method: "POST",
 		url: "php/addApt.php",
-		data: ({year: $('#yearApt').val(),day: $('#dayApt').val(),month: monthNum[$('#monthApt').val()]+1,start: start1,hygenist: 7, dentist: dent1, patient: id,type: $('#typeApt').val(), end: end1}),
+		data: ({year: $('#yearApt').val(),day: $('#dayApt').val(),month: monthNum[$('#monthApt').val()],start: start1,hygenist: 7, dentist: dent1, patient: id,type: $('#typeApt').val(), end: end1}),
 		success: function(data){
 					//console.log(data);
 					location.reload(true);
@@ -199,14 +201,14 @@ var setNextYear = function() {
 }
 
 var clickAdder = function(arg1, arg2, arg3){
-	return function(){edtDayApt(arg1, arg2, arg3);}
+	return function(){edtDayApt(arg1+1, arg2, arg3);}
 }
 
 var displayCalendar = function(month, year) {       
 	month = parseInt(month);
 	year = parseInt(year);
 	
-	$('#month').empty().append(monthName[month] +" "+ year);
+	$('#month').empty().append(monthName[month+1] +" "+ year);
 	var i = 0;
 	for(i=1; i<7; i++){
 		$('#w'+i).empty();

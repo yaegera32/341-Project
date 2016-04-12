@@ -23,8 +23,8 @@
 	
 	$date = $year . "-" . $month . "-" . $day;
 	
-	$time = $start . ":00";
-	$endTime = $end . ":00";
+	$time = $date. " " .$start . ":00";
+	$endTime = $date. " " .$end . ":00";
 
 	$strSQL = "INSERT INTO Appointments(";
 			
