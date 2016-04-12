@@ -1,0 +1,15 @@
+.today {
+}
+.day :hover{
+	cursor: pointer;
+	background-color: yellow;
+}
+li{
+	display: block;
+}
+#calendar {
+	border: 1px solid black;
+}
+#calendar td{
+	border: 1px solid black;
+}
