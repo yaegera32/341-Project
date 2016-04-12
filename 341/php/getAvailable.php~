@@ -8,9 +8,6 @@
 	$time = $_GET["time"];
 	$endTime = $_GET["endTime"];
 
-	$dateTime = $date." ".$time;
-	$endDateTime = $date." ".$endTime;
-
 	$rs = mysqli_query($link, "SELECT * from Appointments where AppointmentDate = '".$date."'");
 	$num_results = mysqli_num_rows($rs);
 	if($num_results == 0){
@@ -25,7 +22,7 @@
 	}
 	else{
 		//$strSQL1 = "SELECT EmployeeID FROM Employees e natural join Appointments a WHERE(EndTime < '".$time.":00' OR AppointmentTime > '".$endTime.":00') AND EmpType = 'Dentist' AND AppointmentDate = '".$date."'";
-		$strSQL1 = "SELECT EmployeeID FROM Employees e natural join Appointments a WHERE (('".$endDateTime.":00' between AppointmentTime and EndTime or '".$dateTime.":00' between AppointmentTime and EndTime or AppointmentTime between '".$dateTime.":00' and '".$endDateTime.":00' or EndTime between '".$dateTime.":00' and '".$endDateTime.":00') AND AppointmentDate = '".$date."' AND EmpType = 'Dentist')";
+		$strSQL1 = "SELECT EmployeeID FROM Employees e natural join Appointments a WHERE (('".$endTime.":00' between AppointmentTime and EndTime or '".$time.":00' between AppointmentTime and EndTime or AppointmentTime between '".$time.":00' and '".$endTime.":00' or EndTime between '".$time.":00' and '".$endTime.":00') AND AppointmentDate = '".$date."' AND EmpType = 'Dentist')";
 		//echo json_encode($strSQL1);
 		$rt = mysqli_query($link, $strSQL1);
 		if (!$rt) {

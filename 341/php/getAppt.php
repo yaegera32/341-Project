@@ -20,7 +20,9 @@
 		$getHygName = mysqli_query($link, "Select firstname, lastname from Employees where EmployeeID = '".$row['HygienistID']."'");
 		$getPatName = mysqli_query($link, "Select firstname, lastname from Patients where PatientID = '".$row['PatientID']."'");
 		$date = $row['AppointmentDate'];
-		$time = $row['AppointmentTime'];
+		$timeAsDateTime = $row['AppointmentTime'];
+		$splitString = array explode(" ", $timeAsDateTime[, int $limit = PHP_INT_MAX]);
+		$time = splitString[1];
 		while($nrow = mysqli_fetch_array($getDentName)){
 				$dent = $nrow['firstname']. " " .$nrow['lastname'];
 		}
