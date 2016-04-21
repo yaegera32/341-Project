@@ -100,12 +100,12 @@ var edtDayApt = function(monthPoll, yearPoll, dayPoll, dentistID){
 	}
 }
 			   
-	var addToList = function(start52, end52, data52, id){
+	var addToList = function(start52, end52, data52, dentistID){
 	//console.log(data);
 	data52 = JSON.parse(data52);
 	data52.forEach(function(appt52){
 		if(appt52['hygienist']!=null){
-			$('<li><button onclick="createApptment(\''+start52+'\', \''+end52+'\', '+appt52['hygienist']+')">'+start52+' Dentist ID: ' + appt52['id'] + ' </button></li>').appendTo($('#Appts'));
+			$('<li><button onclick="createApptment(\''+start52+'\', \''+end52+'\', '+dentistID+')">'+start52+' Dentist ID: ' + dentistID + ' </button></li>').appendTo($('#Appts'));
 		}
 	});
 }
@@ -235,7 +235,7 @@ var displayCalendar = function(month, year) {
 		if ( i%7 == 0 ){
 			week++;
 		}
-		var list = "<ul><li id=\""+dayNum+"h12a\">12AM:</li><li id=\""+dayNum+"h1a\">1AM:</li>"+
+		/*var list = "<ul><li id=\""+dayNum+"h12a\">12AM:</li><li id=\""+dayNum+"h1a\">1AM:</li>"+
 		"<li id=\""+dayNum+"h2a\">2AM:</li><li id=\""+dayNum+"h3a\">3AM:</li>"+
 		"<li id=\""+dayNum+"h4a\">4AM:</li><li id=\""+dayNum+"h5a\">5AM:</li>"+
 		"<li id=\""+dayNum+"h6a\">6AM:</li><li id=\""+dayNum+"h7a\">7AM:</li>"+
@@ -246,7 +246,7 @@ var displayCalendar = function(month, year) {
 		"<li id=\""+dayNum+"h4p\">4PM:</li><li id=\""+dayNum+"h5p\">5PM:</li>"+
 		"<li id=\""+dayNum+"h6p\">6PM:</li><li id=\""+dayNum+"h7p\">7PM:</li>"+
 		"<li id=\""+dayNum+"h8p\">8PM:</li><li id=\""+dayNum+"h9p\">9PM:</li>"+
-		"<li id=\""+dayNum+"h10p\">10PM:</li><li id=\""+dayNum+"h11p\">11PM:</li></ul>"
+		"<li id=\""+dayNum+"h10p\">10PM:</li><li id=\""+dayNum+"h11p\">11PM:</li></ul>"*/
 		if(month == new Date().getUTCMonth() && year == new Date().getUTCFullYear() && i == (new Date().getUTCDate())){
 			$('#w'+week).append($('<td id="'+dayNum+'" class=" day"><p>'+dayNum+'</p><ul></ul></td>'));
 		} else{
