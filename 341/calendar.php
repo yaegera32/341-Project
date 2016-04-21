@@ -9,10 +9,22 @@
 		<link rel="stylesheet" href="css/css.css">
 	</head>
 	<body onload="setToday()">
+		<header>
+			<h1> Website Title</h1>
+		</header>
+		
+		<ul id = "links">
+			<li><a href=" ">Home</a></li>
+			<li><a href=" ">Account</a></li>
+			<li><a href=" ">About Us</a></li>
+			<li><a href=" ">Contact Info</a></li>
+		</ul>
 		<?php
 			session_start();
 			echo("<h1>" . $_SESSION['Username'] . " " . $_SESSION['ID'] . " " . $_SESSION['idstuff'] . " " . $_SESSION['UserType'] . " </h1>");
 		?>
+		<form id = "dentNames" method="get" action="php/getDentists.php">
+		</form>
 		<form method="post" action="php/logout.php">
 			<input type="submit" value="logout"></input>
 		</form>
@@ -98,7 +110,7 @@
 			</tr>
 		</table>
 		
-		<div id="appointment">
+		<!--<div id="appointment">
 			<form method="post" action="php/addApt.php">
 				<input type="number" name="year" placeholder="Year">
 				<input type="number" name="month" placeholder="Month">
@@ -110,11 +122,11 @@
 				<input type="number" name="patient" placeholder="Patient ID">
 				<input type="submit" value="Add Appointment"></input>
 			</form>
+			
 			<div style="display: none;">
 				<br><br><a href="calendar.php">calendar</a><br><a href="page.php">login</a><br><a href="register.php">register</a>
 			</div>
-		</div>
-		
+		</div>-->		
 		
 	</body>
 </html>

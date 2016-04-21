@@ -13,3 +13,42 @@ li{
 #calendar td{
 	border: 1px solid black;
 }
+		#links{
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+    		border: 1px solid #e7e7e7;
+    		background-color: #f3f3f3;
+		}
+		#links li {
+			float: left;	
+		}
+
+		#links li a {
+			display: block;
+			color: white;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+    		color: #666;
+		}
+		
+		#links li a:hover {
+			background-color: darkgray;	
+		}
+		header {
+			background-color:black;
+			color:white;
+			text-align:center;
+			padding:5px;
+		}
+		home {
+			width:350px;
+			float:left;
+			padding:10px;
+		}
+		#login_section {
+			float:right;
+			padding:5px;
+		}

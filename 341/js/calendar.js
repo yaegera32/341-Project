@@ -28,6 +28,7 @@ var fillAppts = function(){
 						var apptMonth = date.getUTCMonth();
 						var apptDay = date.getUTCDate();
 						var apptTime = appt['time'];
+						console.log(appt['dentist']);
 						apptTime = apptTime.substring(0,5);
 						if(apptYear == year && apptMonth == month){
 							$('#'+apptDay).children("ul").append('<li><button id="appt'+appt['id']+'">'
@@ -54,7 +55,7 @@ var deleteAppt = function(apptID){
 	});
 }
 
-var edtDayApt = function(monthPoll, yearPoll, dayPoll){
+var edtDayApt = function(monthPoll, yearPoll, dayPoll, dentistID){
 	$('#Appts').empty();
 	$('#calendar').toggle();
 	$('#create').toggle();
@@ -90,21 +91,21 @@ var edtDayApt = function(monthPoll, yearPoll, dayPoll){
 			async: false,
 			method: "GET",
 			url: "php/getAvailable.php",
-			data: ({date: yearPoll+'-'+monthSend+'-'+daySend,time: openTime[i],endTime:openTime[i+1]}),
+			data: ({date: yearPoll+'-'+monthSend+'-'+daySend,time: openTime[i],endTime:openTime[i+1], id: dentistID}),
 			success: function(data){
 						console.log(data);
-						addToList(openTime[i], openTime[i+1], data);
+						addToList(openTime[i], openTime[i+1], data, dentistID);
 			}
 		});
 	}
 }
-
-var addToList = function(start52, end52, data52){
+			   
+	var addToList = function(start52, end52, data52, id){
 	//console.log(data);
 	data52 = JSON.parse(data52);
 	data52.forEach(function(appt52){
 		if(appt52['hygienist']!=null){
-			$('<li><button onclick="createApptment(\''+start52+'\', \''+end52+'\', '+appt52['hygienist']+')">'+start52+' Dentist ID: 6 </button></li>').appendTo($('#Appts'));
+			$('<li><button onclick="createApptment(\''+start52+'\', \''+end52+'\', '+appt52['hygienist']+')">'+start52+' Dentist ID: ' + appt52['id'] + ' </button></li>').appendTo($('#Appts'));
 		}
 	});
 }
@@ -201,7 +202,15 @@ var setNextYear = function() {
 }
 
 var clickAdder = function(arg1, arg2, arg3){
-	return function(){edtDayApt(arg1+1, arg2, arg3);}
+	return function(){
+		if(document.querySelector('input[name="dentist"]:checked').value != null){
+			var form = document.querySelector('input[name="dentist"]:checked').value;
+			edtDayApt(arg1+1, arg2, arg3, form);
+		}
+		else{
+			alert("please select dentist");	
+		}	
+	}
 }
 
 var displayCalendar = function(month, year) {       
@@ -246,7 +255,22 @@ var displayCalendar = function(month, year) {
 		$('#add'+dayNum).click(clickAdder(month, year, dayNum));
 		dayNum++;
 	}
+	
 	fillAppts();
+	dentists();
+}
+var dentists = function() {
+		$.ajax({
+			method: "GET",
+			url: "php/getDentists.php",
+			success: function(data){
+				data = JSON.parse(data);
+				data.forEach(function(name){
+				$('#dentNames').append($('<input type = "radio" name = "dentist" id = "values" value = "' + name['id']+ '">' +name['name']+'</input>'));
+				console.log(data);
+			});
+			}
+		});
 }
 
 var getDaysInMonth = function(month,year)  {

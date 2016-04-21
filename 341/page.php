@@ -7,10 +7,25 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="js/login.js"></script>
 		<link rel="stylesheet" href="css/css.css">
-
 	</head>
 	<body>
+		<header>
+			<h1> Website Title</h1>
+		</header>
 		
+		<ul id = "links">
+			<li><a href=" ">Home</a></li>
+			<li><a href=" ">Account</a></li>
+			<li><a href=" ">About Us</a></li>
+			<li><a href=" ">Contact Info</a></li>
+		</ul>
+		
+		<home>
+			<p>stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff
+			   stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff
+			   stuff stuff stuff stuff stuff stuffs stuff stuff stuff stuff stuff stuff stuff
+				stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff</p>
+		</home>
 		<form method="post" action="php/login.php">
 			<input type="text" name="username" placeholder="Username"></input>
 			<br>

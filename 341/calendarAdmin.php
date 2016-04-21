@@ -9,10 +9,22 @@
 		<link rel="stylesheet" href="css/css.css">
 	</head>
 	<body onload="setToday()">
+		<header>
+			<h1> Website Title</h1>
+		</header>
+		
+		<ul id = "links">
+			<li><a href=" ">Home</a></li>
+			<li><a href=" ">Account</a></li>
+			<li><a href=" ">About Us</a></li>
+			<li><a href=" ">Contact Info</a></li>
+		</ul>
 		<?php
 			session_start();
 			echo("<h1>" . $_SESSION['Username'] . " " . $_SESSION['ID'] . " " . $_SESSION['idstuff'] . " </h1>");
 		?>
+		<form id = "dentNames" method="get" action="php/getDentists.php">
+		</form>
 		<form method="post" action="php/logout.php">
 			<input type="submit" value="logout"></input>
 		</form>
