@@ -7,6 +7,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="js/calendar.js"></script>
 		<link rel="stylesheet" href="css/css.css">
+		<link rel="stylesheet" href="css/DropDown.css">
 	</head>
 	<body onload="setToday()">
 		<header>
@@ -20,16 +21,26 @@
 		</ul>
 		<?php
 			session_start();
-			echo("<h1>" . $_SESSION['Username'] . " " . $_SESSION['ID'] . " " . $_SESSION['idstuff'] . " " . $_SESSION['UserType'] . " </h1>");
+			echo("<h1> Hello ".$_SESSION['Username']." </h1>");
 		?>
-		<div id = "appointmentInfo">
-		<form id = "dentNames" method="get" action="php/getDentists.php">
-		</form>
-		<ul>
-			<li><input type="radio" value = "cleaning" name="type">Cleaning</input>
-			<li><input type="radio" value = "rootcanal" name="type">Root Canal</input>
-		</ul>
-		</div>
+		<select name="dentistselect" id = "selectID">
+		<?php
+			$link = mysqli_connect("localhost", "root", "security") or die(mysqli_error());
+			mysqli_select_db($link, "new_schema") or die(mysqli_error($link));
+
+			$result = mysqli_query($link, "select EmployeeID, lastname from Employees where EmpType = 'Dentist'");
+			while($row = mysqli_fetch_array($result)){
+				$name = $row['lastname'];
+				$id = $row['EmployeeID'];
+				echo("<option value = '".$id."'>".$name."</option>");
+			}
+			mysqli_close($link);
+		?>
+		</select>
+		<select name = "typeselect" id = "typeselectID">
+			<option value = "cleaning">Cleaning</option>
+			<option value = "rootcanal">Root Canal</option>
+		</select>
 		<form method="post" action="php/logout.php">
 			<input type="submit" value="logout"></input>
 		</form>
@@ -58,8 +69,8 @@
 		<table id="calendar" >
 			<tr>
 				<td colspan="7">
-					<button onclick="showAppt()">Show Appointments</button>
-					<button onclick="showAvailable()">Show Availability</button>
+					<!--<button onclick="showAppt()">Show Appointments</button>
+					<button onclick="showAvailable()">Show Availability</button>-->
 					<select id="monthJump">
 						<option value="0">January</option>
 						<option value="1">February</option>

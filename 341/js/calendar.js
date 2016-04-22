@@ -6,6 +6,10 @@ var month;
 var year;
 var id;
 
+var dropdownfunction = function(){
+	document.getElementById("myDropDown").classList.toggle("show");
+}
+
 var getID = function(){
 	$.ajax({
 		method: "GET",
@@ -78,7 +82,7 @@ var edtDayApt = function(monthPoll, yearPoll, dayPoll, dentistID){
 	else{
 		daySend = dayPoll;
 	}
-	var type = document.querySelector("input[name = 'type']:checked").value;
+	var type = document.getElementById("typeselectID").value;
 	var typeLength;
 	switch(type) {
 		case "cleaning":
@@ -206,13 +210,8 @@ var setNextYear = function() {
 
 var clickAdder = function(arg1, arg2, arg3){
 	return function(){
-		if(document.querySelector('input[name="dentist"]:checked').value != null){
-			var form = document.querySelector('input[name="dentist"]:checked').value;
-			edtDayApt(arg1+1, arg2, arg3, form);
-		}
-		else{
-			alert("please select dentist");	
-		}	
+		var dentist = document.getElementById("selectID").value;
+		edtDayApt(arg1+1, arg2, arg3, dentist);
 	}
 }
 
@@ -260,20 +259,6 @@ var displayCalendar = function(month, year) {
 	}
 	
 	fillAppts();
-	dentists();
-}
-var dentists = function() {
-		$.ajax({
-			method: "GET",
-			url: "php/getDentists.php",
-			success: function(data){
-				data = JSON.parse(data);
-				data.forEach(function(name){
-				$('#dentNames').append($('<input type = "radio" name = "dentist" id = "values" value = "' + name['id']+ '">' +name['name']+'</input>'));
-				console.log(data);
-			});
-			}
-		});
 }
 
 var getDaysInMonth = function(month,year)  {
