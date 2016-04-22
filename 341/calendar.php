@@ -7,7 +7,6 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="js/calendar.js"></script>
 		<link rel="stylesheet" href="css/css.css">
-		<link rel="stylesheet" href="css/DropDown.css">
 	</head>
 	<body onload="setToday()">
 		<header>
