@@ -32,16 +32,37 @@
 		//echo json_encode("  else  ");
 		//$strSQL1 = "SELECT EmployeeID FROM Employees e natural join Appointments a WHERE(EndTime < '".$dateTime.":00' OR AppointmentTime > '".$endDateTime.":00') AND EmpType = 'Dentist'";
 		//echo json_encode($strSQL1);
-		$strSQL1 = "Select EmployeeID FROM Employees WHERE EmployeeID NOT IN(SELECT EmployeeID FROM Employees e natural join Appointments a WHERE (('".$endDateTime.":00' between AppointmentTime and EndTime or '".$dateTime.":00' between AppointmentTime and EndTime or AppointmentTime between '".$dateTime.":00' and '".$endDateTime.":00' or EndTime between '".$dateTime.":00' and '".$endDateTime.":00') )) AND EmpType = 'Hygienist'";
+		$strSQL1 = "Select f.EmployeeID FROM Employees f WHERE EmployeeID NOT IN(".
+															"SELECT EmployeeID FROM Employees e join Appointments a WHERE(".
+																"('".$endDateTime.":00' between AppointmentTime and EndTime or ". 
+																"'".$dateTime.":00' between AppointmentTime and EndTime or ". 
+																"AppointmentTime between '".$dateTime.":00' and '".$endDateTime.":00' or ". 
+																"EndTime between '".$dateTime.":00' and '".$endDateTime.":00')AND e.EmployeeID = a.HygienistID))".
+															"AND EmpType = 'Hygienist'";
+		$strSQL2 = "SELECT EmployeeID FROM Employees WHERE EmployeeID NOT IN(".
+															"SELECT EmployeeID FROM Employees e join Appointments a WHERE(".
+																"('".$endDateTime.":00' between AppointmentTime and EndTime or ". 
+																"'".$dateTime.":00' between AppointmentTime and EndTime or ". 
+																"AppointmentTime between '".$dateTime.":00' and '".$endDateTime.":00' or ". 
+																"EndTime between '".$dateTime.":00' and '".$endDateTime.":00')AND a.DentistID = '".$id."'))".
+															"AND EmpType = 'Dentist'";
+		$rd = mysqli_query($link, $strSQL2);													
 		$rt = mysqli_query($link, $strSQL1);
 		if (!$rt) {
 			printf("Error: %s\n", mysqli_error($link));
 			exit();
 		}
+		else if(!$rd){
+			printf("Error: %s\n", mysqli_error($link));
+			exit();
+		}
+		
 		$arr = array();
 		$row = mysqli_fetch_row($rt);
+		$row2 = mysqli_fetch_row($rd);
+		$id = $row2[0];
 		$hyg = $row[0];
-		//$hyg = $row['HygienistID'];
+		//$hyg = $row['EmployeeID'];
 		$data = (object)array('hygienist' => $hyg, 'id' => $id);
 		array_push($arr, $data);
 

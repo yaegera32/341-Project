@@ -8,7 +8,7 @@
 	$year = $_POST["year"];
 	$start = $_POST["start"];
 	$dent = $_POST["dentist"];
-	$hyge = $_POST["hygenist"];
+	$hyg = $_POST["hygienist"];
 	$pat = $_POST["patient"];
 	$type = $_POST["type"];
 	$end = $_POST["end"];
@@ -29,7 +29,7 @@
 	$strSQL = "INSERT INTO Appointments(";
 			
 	$strSQL = $strSQL . "AppointmentDate, AppointmentTime, DentistID, HygienistID, EndTime, PatientID, AppointmentType)";
-	$strSQL = $strSQL . "VALUES('".$date."', '".$time."', '".$dent."', '".$hyge."', '".$endTime."', '".$pat."', '".$type."')";
+	$strSQL = $strSQL . "VALUES('".$date."', '".$time."', '".$dent."', '".$hyg."', '".$endTime."', '".$pat."', '".$type."')";
 	//echo json_encode($strSQL);
 	mysqli_query($link, $strSQL) or die(mysqli_error($link));
 	

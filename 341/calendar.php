@@ -25,6 +25,10 @@
 		?>
 		<form id = "dentNames" method="get" action="php/getDentists.php">
 		</form>
+		<ul>
+			<li><input type="radio" value = "cleaning" name="type">Cleaning</input>
+			<li><input type="radio" value = "rootcanal" name="type">Root Canal</input>
+		</ul>
 		<form method="post" action="php/logout.php">
 			<input type="submit" value="logout"></input>
 		</form>
