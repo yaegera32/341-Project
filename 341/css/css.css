@@ -63,7 +63,7 @@
     margin-bottom: 5px;
     font-size:12px;
     color:#777;
-}
+}s
 
 .day :hover {
 	cursor: pointer;
@@ -82,10 +82,12 @@ li{
 	
 }
 #calendar td{
- border: 1px solid #A2ADBC;
  width: 100px;
  height: 20px;
  
+}
+#appointmentInfo{
+	float:right;	
 }
 
 		#links{

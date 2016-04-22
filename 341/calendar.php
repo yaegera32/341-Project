@@ -12,7 +12,6 @@
 		<header>
 			<h1> Website Title</h1>
 		</header>
-		
 		<ul id = "links">
 			<li><a href=" ">Home</a></li>
 			<li><a href=" ">Account</a></li>
@@ -23,12 +22,14 @@
 			session_start();
 			echo("<h1>" . $_SESSION['Username'] . " " . $_SESSION['ID'] . " " . $_SESSION['idstuff'] . " " . $_SESSION['UserType'] . " </h1>");
 		?>
+		<div id = "appointmentInfo">
 		<form id = "dentNames" method="get" action="php/getDentists.php">
 		</form>
 		<ul>
 			<li><input type="radio" value = "cleaning" name="type">Cleaning</input>
 			<li><input type="radio" value = "rootcanal" name="type">Root Canal</input>
 		</ul>
+		</div>
 		<form method="post" action="php/logout.php">
 			<input type="submit" value="logout"></input>
 		</form>
