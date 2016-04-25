@@ -130,11 +130,16 @@ li{
 			padding:5px;
 		}
 		home {
-			width:350px;
+			width:77%;
 			float:left;
 			padding:10px;
 		}
 		#login_section {
 			float:right;
+			width:20%;
 			padding:5px;
 		}
+#footer{
+	text-align:center;
+	width:100%;
+}

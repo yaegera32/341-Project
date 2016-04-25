@@ -24,7 +24,11 @@
 			   stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff
 			   stuff stuff stuff stuff stuff stuffs stuff stuff stuff stuff stuff stuff stuff
 				stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff</p>
+		<div id = "footer">
+			Copyright &copy dentistscheduler.com
+		</div>
 		</home>
+		<div id = "login_section">
 		<form method="post" action="php/login.php">
 			<input type="text" name="username" placeholder="Username"></input>
 			<br>
@@ -37,8 +41,6 @@
 			</div>
 		</form>
 		<input type="button" value="Register" onClick="location.href = 'register.php';"></input>
-		<div id = "footer">
-			Copyright &copy dentistscheduler.com
 		</div>
 	</body>
 </head>
