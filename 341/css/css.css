@@ -30,6 +30,15 @@
     letter-spacing: 3px; */
 }
 
+.right {
+	width: 20%;
+	float: right;
+}
+
+.nav {
+		
+}
+
 /* Previous button inside month header 
 .month .prev {
     float: left;

@@ -19,7 +19,6 @@
 			<li><a href=" ">About Us</a></li>
 			<li><a href=" ">Contact Info</a></li>
 		</ul>
-		
 		<home>
 			<p>stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff
 			   stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff stuff
@@ -38,5 +37,8 @@
 			</div>
 		</form>
 		<input type="button" value="Register" onClick="location.href = 'register.php';"></input>
+		<div id = "footer">
+			Copyright &copy dentistscheduler.com
+		</div>
 	</body>
 </head>
