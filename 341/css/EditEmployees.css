@@ -1,0 +1,21 @@
+#dentists{
+	float: left;
+	width: 77%;
+	text-align:left;
+	padding:10px;
+}
+#addnew{
+	float:left;
+	width:70%;
+	text-align:left;
+	padding:10px;
+}
+#actionbar{
+	float:right;
+	width:20%;
+	padding:10px;
+}
+#typeSelection{
+	float:left;
+	padding:10px;
+}

@@ -19,6 +19,7 @@
 			<li><a href=" ">Account</a></li>
 			<li><a href=" ">About Us</a></li>
 			<li><a href=" ">Contact Info</a></li>
+			<li><a href="EditEmployeesPage.php">Employees</a></li>
 		</ul>
 		<?php
 			session_start();
@@ -134,7 +135,7 @@
 			</tr>
 		</table>
 		
-		<div id="appointment">
+		<!--<div id="appointment">
 			<form method="post" action="php/addApt.php">
 				<input type="number" name="year" placeholder="Year">
 				<input type="number" name="month" placeholder="Month">
@@ -149,7 +150,7 @@
 			<div style="display: none;">
 				<br><br><a href="calendar.php">calendar</a><br><a href="page.php">login</a><br><a href="register.php">register</a>
 			</div>
-		</div>
+		</div>-->
 		
 		
 	</body>

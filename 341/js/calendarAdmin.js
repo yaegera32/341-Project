@@ -60,6 +60,7 @@ var edtDayApt = function(monthPoll, yearPoll, dayPoll, dentistID){
 	$('#yearApt').val(yearPoll);
 	$('#dayApt').val(dayPoll);
 	$('#monthApt').val(monthName[monthPoll]);
+	
 	var monthSend;
 	if(monthPoll<10){
 		monthSend = '0'+monthPoll;
@@ -74,34 +75,37 @@ var edtDayApt = function(monthPoll, yearPoll, dayPoll, dentistID){
 	else{
 		daySend = dayPoll;
 	}
+	var type = document.getElementById("typeselectID").value;
+	var typeLength;
+	switch(type) {
+		case "cleaning":
+			typeLength = 1;
+			break;
+		case "rootcanal":
+			typeLength = 3;
+			break;
+	}
+	
 	for(var i=0; i<openTime.length-1; i++){
-		var min = '00';
-		if(i%2 == 1){
-			min = '30';
-		}
-		var hour = i/2 + 8;
-		if(hour%1==.5){
-			hour -= .5;
-		}
 		$.ajax({
 			async: false,
 			method: "GET",
 			url: "php/getAvailable.php",
-			data: ({date: yearPoll+'-'+monthSend+'-'+daySend,time: openTime[i],endTime:openTime[i+1], id: dentistID}),
+			data: ({date: yearPoll+'-'+monthSend+'-'+daySend,time: openTime[i],endTime:openTime[i+typeLength], id: dentistID}),
 			success: function(data){
 						console.log(data);
-						addToList(openTime[i], openTime[i+1], data);
+						addToList(openTime[i], openTime[i+typeLength], data, dentistID);
 			}
 		});
 	}
 }
-
-var addToList = function(start52, end52, data52){
+			   
+var addToList = function(start52, end52, data52, dentistID){
 	//console.log(data);
 	data52 = JSON.parse(data52);
 	data52.forEach(function(appt52){
-		if(appt52['hygienist']!=null){
-			$('<li><button onclick="createApptment(\''+start52+'\', \''+end52+'\', \''+appt52['hygienist']+'\')">'+start52+' Dentist ID:'+appt52['id']+'</button></li>').appendTo($('#Appts'));
+		if(appt52['hygienist']!=null && appt52['id']!=null){
+			$('<li><button onclick="createApptment(\''+start52+'\', \''+end52+'\', \''+dentistID+'\', \''+appt52['hygienist']+'\')">'+start52+' Dentist ID: ' + dentistID + ' </button></li>').appendTo($('#Appts'));
 		}
 	});
 }
@@ -197,8 +201,8 @@ var setNextYear = function() {
 
 var clickAdder = function(arg1, arg2, arg3){
 	return function(){
-		var form = document.querySelector('input[name="dentist"]:checked').value;
-		edtDayApt(arg1+1, arg2, arg3, form);
+		var dentist = document.getElementById("selectID").value;
+		edtDayApt(arg1+1, arg2, arg3, dentist);
 	}
 }
 
