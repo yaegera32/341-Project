@@ -7,11 +7,12 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="js/calendarAdmin.js"></script>
 		<link rel="stylesheet" href="css/css.css">
+		<link rel="stylesheet" href="css/Calendar.css">
 	</head>
 	<body onload="setToday()">
-		<header>
+		<div id = "header">
 			<h1> Website Title</h1>
-		</header>
+		</div>
 		
 		<ul id = "links">
 			<li><a href=" ">Home</a></li>
@@ -23,6 +24,28 @@
 			session_start();
 			echo("<h1>" . $_SESSION['Username'] . " " . $_SESSION['ID'] . " " . $_SESSION['idstuff'] . " </h1>");
 		?>
+		<div class = "right">
+			<ul class = "nav">
+				<li><select name="dentistselect" id = "selectID">
+					<?php
+						$link = mysqli_connect("localhost", "root", "security") or die(mysqli_error());
+						mysqli_select_db($link, "new_schema") or die(mysqli_error($link));
+
+						$result = mysqli_query($link, "select EmployeeID, lastname from Employees where EmpType = 'Dentist'");
+						while($row = mysqli_fetch_array($result)){
+							$name = $row['lastname'];
+							$id = $row['EmployeeID'];
+							echo("<option value = '".$id."'>".$name."</option>");
+						}
+						mysqli_close($link);
+					?>
+					</select></li>
+				<li><select name = "typeselect" id = "typeselectID">
+					<option value = "cleaning">Cleaning</option>
+					<option value = "rootcanal">Root Canal</option>
+					</select></li>
+			</ul>
+		</div>
 		<form id = "dentNames" method="get" action="php/getDentists.php">
 		</form>
 		<form method="post" action="php/logout.php">

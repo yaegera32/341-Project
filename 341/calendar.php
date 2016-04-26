@@ -27,16 +27,16 @@
 			<ul class = "nav">
 				<li><select name="dentistselect" id = "selectID">
 					<?php
-					$link = mysqli_connect("localhost", "root", "security") or die(mysqli_error());
-					mysqli_select_db($link, "new_schema") or die(mysqli_error($link));
+						$link = mysqli_connect("localhost", "root", "security") or die(mysqli_error());
+						mysqli_select_db($link, "new_schema") or die(mysqli_error($link));
 
-					$result = mysqli_query($link, "select EmployeeID, lastname from Employees where EmpType = 'Dentist'");
-					while($row = mysqli_fetch_array($result)){
-						$name = $row['lastname'];
-						$id = $row['EmployeeID'];
-						echo("<option value = '".$id."'>".$name."</option>");
-					}
-					mysqli_close($link);
+						$result = mysqli_query($link, "select EmployeeID, lastname from Employees where EmpType = 'Dentist'");
+						while($row = mysqli_fetch_array($result)){
+							$name = $row['lastname'];
+							$id = $row['EmployeeID'];
+							echo("<option value = '".$id."'>".$name."</option>");
+						}
+						mysqli_close($link);
 					?>
 					</select></li>
 				<li><select name = "typeselect" id = "typeselectID">
