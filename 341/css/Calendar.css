@@ -1,0 +1,45 @@
+.today {
+}
+.month ul {
+    margin: 0;
+    padding: 0;
+}
+.month  {
+	padding: 70px 25px;
+    width: 100%;
+    background: #1abc9c;
+}
+.right {
+	width: 20%;
+	float: right;
+}
+.day {
+    padding: 10px 0;
+    background: #eee;
+    margin-bottom: 5px;
+    font-size:12px;
+    color:#777;
+}
+.day :hover {
+	cursor: pointer;
+	background-color: #A2ADBC;
+}
+li{
+	display: block;
+}
+#calendar {
+ width: 150px;
+ padding: 0;
+ margin: 0;
+ font: normal 22px/20px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+ color: #0;
+ background-color: #606060;
+	
+}
+#calendar td{
+ width: 100px;
+ height: 20px;
+}
+#appointmentInfo{
+	float:right;	
+}

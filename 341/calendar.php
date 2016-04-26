@@ -7,11 +7,12 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="js/calendar.js"></script>
 		<link rel="stylesheet" href="css/css.css">
+		<link rel = "stylesheet" href="css/Calendar.css">
 	</head>
 	<body onload="setToday()">
-		<header>
+		<div id = "header">
 			<h1> Website Title</h1>
-		</header>
+		</div>
 		<ul id = "links">
 			<li><a href=" ">Home</a></li>
 			<li><a href=" ">Account</a></li>
@@ -48,27 +49,27 @@
 			<input type="submit" value="logout"></input>
 		</form>
 		<button onclick="toggleCalendar()">Hide/Show</button>
-			<button onclick="toggleApt()">Close</button>
+		<button onclick="toggleApt()">Close</button>
 		
-			<table id="create" style="display:none">
-				<tr>
-					<td colspan="4">
-						<button onclick="createApptment()">Add Appointment</input>
-					</td>
-				</tr>
-				<tr>
-					<td><input id="typeApt" type="text" name="type" placeholder="Type"></td>
-					<td><input id="monthApt" type="text" name="month" placeholder="Month"></td>
-					<td><input id="dayApt" type="number" name="day" placeholder="Day"></td>
-					<td><input id="yearApt" type="number" name="year" placeholder="Year"></td>
-				</tr>
-				<tr>
-					<td colspan="4">
-						<ul id="Appts">
-						</ul>
-					</td>
-				</tr>
-			</table>
+		<table id="create" style="display:none">
+			<tr>
+				<td colspan="4">
+					<button onclick="createApptment()">Add Appointment</input>
+				</td>
+			</tr>
+			<tr>
+				<td><input id="typeApt" type="text" name="type" placeholder="Type"></td>
+				<td><input id="monthApt" type="text" name="month" placeholder="Month"></td>
+				<td><input id="dayApt" type="number" name="day" placeholder="Day"></td>
+				<td><input id="yearApt" type="number" name="year" placeholder="Year"></td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<ul id="Appts">
+					</ul>
+				</td>
+			</tr>
+		</table>
 		<table id="calendar" >
 			<tr>
 				<td colspan="7">

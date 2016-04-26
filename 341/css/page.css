@@ -1,0 +1,10 @@
+#login_section {
+	float:right;
+	width:20%;
+	padding:5px;
+}
+#content {
+	width:77%;
+	float:left;
+	padding:10px;
+}
