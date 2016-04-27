@@ -4,7 +4,7 @@
 		<title>
 			Employees
 		</title>
-		<script src="js/Employees.js"></script>
+		<script src="js/calendarAdmin.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<link rel="stylesheet" href="css/css.css">
 		<link rel="stylesheet" href="css/EditEmployees.css">
@@ -31,12 +31,13 @@
 			<h1 style = "text-align: center;">
 				Dentists
 			</h1>
-			<select name="dentistselect" id = "selectID">
+			<form id = "delete" method = "post" action = "php/deleteEmployee.php">
+			<select name="select" id = "selectDentistID">
 					<?php
 						$link = mysqli_connect("localhost", "root", "security") or die(mysqli_error());
 						mysqli_select_db($link, "new_schema") or die(mysqli_error($link));
 
-						$result = mysqli_query($link, "select EmployeeID, lastname from Employees where EmpType = 'Dentist'");
+						$result = mysqli_query($link, "select EmployeeID, lastname from Employees natural join Usernames where EmpType = 'Dentist'");
 						while($row = mysqli_fetch_array($result)){
 							$name = $row['lastname'];
 							$id = $row['EmployeeID'];
@@ -45,18 +46,37 @@
 						mysqli_close($link);
 					?>
 					</select>
-			<button id = "delete" onClick = "deleteEmployee.php">Delete</button>
+			<input name = "delete" type = "submit" value = "Delete">
+			</form>
+			<select id="monthselect">
+						<option value="1">January</option>
+						<option value="2">February</option>
+						<option value="3">March</option>
+						<option value="4">April</option>
+						<option value="5">May</option>
+						<option value="6">June</option>
+						<option value="7">July</option>
+						<option value="8">August</option>
+						<option value="9">September</option>
+						<option value="10">October</option>
+						<option value="11">November</option>
+						<option value="12">December</option>
+			</select>
+			<input type="number" id="year" placeholder = "Year">
+			<input type="number" id="day" placeholder = "Day">
+			<button id = "addtimeoff" onclick = "addTimeOff()">Add Time Off</button>
 		</div>
 		<div id = "hygienist" class="contentDiv">
 			<h1 style = "text-align:center;">
 				Hygienists
 			</h1>
-			<select name="hygienistselect" id = "selectID">
+			<form id = "delete" method = "post" action = "php/deleteEmployee.php">
+			<select name="select" id = "selectID">
 				<?php
 					$link = mysqli_connect("localhost", "root", "security") or die(mysqli_error());
 					mysqli_select_db($link, "new_schema") or die(mysqli_error($link));
 
-					$result = mysqli_query($link, "select EmployeeID, lastname from Employees where EmpType = 'Hygienist'");
+					$result = mysqli_query($link, "select EmployeeID, lastname from Employees natural join Usernames where EmpType = 'Hygienist'");
 					while($row = mysqli_fetch_array($result)){
 						$name = $row['lastname'];
 						$id = $row['EmployeeID'];
@@ -65,27 +85,30 @@
 					mysqli_close($link);
 				?>
 			</select>
-			<button id = "delete" onClick = "deleteEmployee.php">Delete</button>
+			<input name = "delete" type = "submit" value = "Delete">
+			</form>
+			<!--<button id = "delete" onClick = "deleteEmployee.php">Delete</button>-->
 		</div>
 		<div id = "addnew" class="contentDiv">
 			<h1>Add a New Employee</h1>
-			<form id = "addEmployeeInfo" method = "post" action = "AddEmployee.php"> 
+			<form id = "addEmployeeInfo" method = "get" action = "php/AddEmployee.php"> 
 				<!--<div id = "typeSelection">
 					<input id = "employeeTypeDentist" type = "radio" value = "dentist">Dentist</input><br>
 					<input id = "employeeTypeHygienist" type = "radio" value = "hygienist">Hygienist</input>
 				</div><br><br><br><br>-->
-				<select id = "typeselect">
+				<select name = "typeselect">
 					<option value = "Dentist">Dentist</option>
 					<option value = "Hygienist">Hygienist</option>
 				</select>
-				<input id = "firstname" type = "text" placeholder = "First name"></input>
-				<input id = "lastname" type = "text" placeholder = "Last name"></input><br><br>
-				<input id = "phone" type = "text" placeholder = "Phone number"></input>
-				<input id = "email" type = "text" placeholder = "Email address"></input><br><br>
-				<input id = "username" type = "text" placeholder = "Username"></input><br><br>
-				<input id = "password" type = "password" placeholder = "password"></input>
-				<input id = "passwordconfirm" type = "password" placeholder = "Confirm password"></input><br><br>
-				<button id = "confirmAddEmployee" onClick="addEmployee.php">Confirm</button>
+				<input name = "firstname" type = "text" placeholder = "First name">
+				<input name = "lastname" type = "text" placeholder = "Last name"><br><br>
+				<input name = "phone" type = "text" placeholder = "Phone number">
+				<input name = "address" type = "text" placeholder = "Address">
+				<input name = "email" type = "text" placeholder = "Email address"><br><br>
+				<input name = "username" type = "text" placeholder = "Username"><br><br>
+				<input name = "password" type = "password" placeholder = "password">
+				<input name = "passwordconfirm" type = "password" placeholder = "Confirm password"><br><br>
+				<input name = "confirmAddEmployee" type = "submit" value = "Confirm">
 			</form>
 		</div>
 		<script>

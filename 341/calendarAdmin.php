@@ -47,8 +47,6 @@
 					</select></li>
 			</ul>
 		</div>
-		<form id = "dentNames" method="get" action="php/getDentists.php">
-		</form>
 		<form method="post" action="php/logout.php">
 			<input type="submit" value="logout"></input>
 		</form>
@@ -135,7 +133,7 @@
 			</tr>
 		</table>
 		
-		<!--<div id="appointment">
+		<div id="appointment">
 			<form method="post" action="php/addApt.php">
 				<input type="number" name="year" placeholder="Year">
 				<input type="number" name="month" placeholder="Month">
@@ -150,7 +148,7 @@
 			<div style="display: none;">
 				<br><br><a href="calendar.php">calendar</a><br><a href="page.php">login</a><br><a href="register.php">register</a>
 			</div>
-		</div>-->
+		</div>
 		
 		
 	</body>

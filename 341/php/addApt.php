@@ -34,5 +34,4 @@
 	mysqli_query($link, $strSQL) or die(mysqli_error($link));
 	
 	header('Location: /calendar.php');
-
 ?>
