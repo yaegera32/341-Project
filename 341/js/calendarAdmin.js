@@ -150,13 +150,11 @@ var addToList = function(start52, end52, data52, dentistID){
 }
 
 var createApptment = function(start1, end1, dent1, hyg){
-	//console.log("month = "+$('#monthApt').val());
 	$.ajax({
 		method: "POST",
 		url: "php/addApt.php",
-		data: ({year: $('#yearApt').val(),day: $('#dayApt').val(),month: monthNum[$('#monthApt').val()],start: start1,hygienist: hyg, dentist: dent1, patient: id,type: $('#typeApt').val(), end: end1}),
+		data: ({year: $('#yearApt').val(),day: $('#dayApt').val(),month: monthNum[$('#monthApt').val()],start: start1,hygienist: hyg, dentist: dent1, patient: 11,type: $('#typeApt').val(), end: end1, username: $('#usernameInput').val()}),
 		success: function(data){
-					//console.log(data);
 					location.reload(true);
 				}
 	});

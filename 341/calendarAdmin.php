@@ -45,6 +45,7 @@
 					<option value = "cleaning">Cleaning</option>
 					<option value = "rootcanal">Root Canal</option>
 					</select></li>
+				<li><input type = "text" id = "usernameInput" placeholder = "Patient username"></li>
 			</ul>
 		</div>
 		<form method="post" action="php/logout.php">
@@ -73,7 +74,7 @@
 					</td>
 				</tr>
 			</table>
-		<table id="calendar" >
+		<table id="calendar" style = "width: 80%;">
 			<tr>
 				<td colspan="7">
 					<button onclick="showAppt()">Show Appointments</button>
@@ -133,7 +134,7 @@
 			</tr>
 		</table>
 		
-		<div id="appointment">
+		<!--<div id="appointment">
 			<form method="post" action="php/addApt.php">
 				<input type="number" name="year" placeholder="Year">
 				<input type="number" name="month" placeholder="Month">
@@ -148,7 +149,7 @@
 			<div style="display: none;">
 				<br><br><a href="calendar.php">calendar</a><br><a href="page.php">login</a><br><a href="register.php">register</a>
 			</div>
-		</div>
+		</div>-->
 		
 		
 	</body>

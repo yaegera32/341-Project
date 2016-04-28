@@ -70,7 +70,7 @@
 				</td>
 			</tr>
 		</table>
-		<table id="calendar" >
+		<table id="calendar" style = "width: 80%;">
 			<tr>
 				<td colspan="7">
 					<!--<button onclick="showAppt()">Show Appointments</button>
