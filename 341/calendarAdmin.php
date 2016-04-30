@@ -20,6 +20,7 @@
 			<li><a href=" ">About Us</a></li>
 			<li><a href=" ">Contact Info</a></li>
 			<li><a href="EditEmployeesPage.php">Employees</a></li>
+			<li style = "float:right;"><form method="post" action="php/logout.php"><input type="submit" value="logout"></input></form></li>
 		</ul>
 		<?php
 			session_start();
@@ -27,12 +28,13 @@
 		?>
 		<div class = "right">
 			<ul class = "nav">
+				<h2>Appointment Information</h2>
 				<li><select name="dentistselect" id = "selectID">
 					<?php
 						$link = mysqli_connect("localhost", "root", "security") or die(mysqli_error());
 						mysqli_select_db($link, "new_schema") or die(mysqli_error($link));
 
-						$result = mysqli_query($link, "select EmployeeID, lastname from Employees where EmpType = 'Dentist'");
+						$result = mysqli_query($link, "select EmployeeID, lastname from Employees natural join Usernames where EmpType = 'Dentist'");
 						while($row = mysqli_fetch_array($result)){
 							$name = $row['lastname'];
 							$id = $row['EmployeeID'];
@@ -48,9 +50,9 @@
 				<li><input type = "text" id = "usernameInput" placeholder = "Patient username"></li>
 			</ul>
 		</div>
-		<form method="post" action="php/logout.php">
+		<!--<form method="post" action="php/logout.php">
 			<input type="submit" value="logout"></input>
-		</form>
+		</form>-->
 		<button onclick="toggleCalendar()">Hide/Show</button>
 			<button onclick="toggleApt()">Close</button>
 		
@@ -74,7 +76,7 @@
 					</td>
 				</tr>
 			</table>
-		<table id="calendar" style = "width: 80%;">
+		<table id="calendar">
 			<tr>
 				<td colspan="7">
 					<button onclick="showAppt()">Show Appointments</button>

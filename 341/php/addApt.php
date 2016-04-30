@@ -25,6 +25,7 @@
 		$strSQL1 = "Select PatientID from Usernames where Username = '".$username."'";
 		$result = mysqli_query($link, $strSQL1) or die(mysqli_error($link));
 		while($patientID = mysqli_fetch_row($result)){
+			if(!$patientID) exit();
 			$pat = $patientID[0];
 			//echo json_encode($patientID[0]);
 		}

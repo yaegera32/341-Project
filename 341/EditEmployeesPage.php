@@ -19,6 +19,7 @@
 			<li><a href=" ">About Us</a></li>
 			<li><a href=" ">Contact Info</a></li>
 			<li><a href="EditEmployeesPage.php">Employees</a></li>
+			<li style = "float:right;"><form method="post" action="php/logout.php"><input type="submit" value="logout"></input></form></li>
 		</ul>
 		<div id = "actionbar">
 			<ul id = "actions">
@@ -64,14 +65,14 @@
 			</select>
 			<input type="number" id="year" placeholder = "Year">
 			<input type="number" id="day" placeholder = "Day">
-			<button id = "addtimeoff" onclick = "addTimeOff()">Add Time Off</button>
+			<button id = "addtimeoff" onclick = "addDentistTimeOff()">Add Time Off</button>
 		</div>
 		<div id = "hygienist" class="contentDiv">
 			<h1 style = "text-align:center;">
 				Hygienists
 			</h1>
 			<form id = "delete" method = "post" action = "php/deleteEmployee.php">
-			<select name="select" id = "selectID">
+			<select name="select" id = "selectHygienistID">
 				<?php
 					$link = mysqli_connect("localhost", "root", "security") or die(mysqli_error());
 					mysqli_select_db($link, "new_schema") or die(mysqli_error($link));
@@ -87,7 +88,23 @@
 			</select>
 			<input name = "delete" type = "submit" value = "Delete">
 			</form>
-			<!--<button id = "delete" onClick = "deleteEmployee.php">Delete</button>-->
+			<select id="Hmonthselect">
+						<option value="1">January</option>
+						<option value="2">February</option>
+						<option value="3">March</option>
+						<option value="4">April</option>
+						<option value="5">May</option>
+						<option value="6">June</option>
+						<option value="7">July</option>
+						<option value="8">August</option>
+						<option value="9">September</option>
+						<option value="10">October</option>
+						<option value="11">November</option>
+						<option value="12">December</option>
+			</select>
+			<input type="number" id="Hyear" placeholder = "Year">
+			<input type="number" id="Hday" placeholder = "Day">
+			<button id = "addtimeoffH" onclick = "addHygienistTimeOff()">Add Time Off</button>
 		</div>
 		<div id = "addnew" class="contentDiv">
 			<h1>Add a New Employee</h1>
