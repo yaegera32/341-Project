@@ -55,7 +55,7 @@
 		<!--<form method="post" action="php/logout.php">
 			<input type="submit" value="logout"></input>
 		</form>-->
-			<table id="create" style="display:none">
+			<table class = "createTable" id="create" style="display:none">
 				<tr>
 					<td colspan="5">
 						<button onclick="createApptment()">Add Appointment</input>

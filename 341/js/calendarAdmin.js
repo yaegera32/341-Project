@@ -186,7 +186,7 @@ var addToList = function(start52, end52, data52, dentistID){
 	data52 = JSON.parse(data52);
 	data52.forEach(function(appt52){
 		if(appt52['hygienist']!=null && appt52['id']!=null && $('#usernameInput').val() != ""){
-			$('<li><button onclick="createApptment(\''+start52+'\', \''+end52+'\', \''+dentistID+'\', \''+appt52['hygienist']+'\')">'+start52+' Dentist ID: ' + dentistID + ' </button></li>').appendTo($('#Appts'));
+			$('<li><button onclick="createApptment(\''+start52+'\', \''+end52+'\', \''+dentistID+'\', \''+appt52['hygienist']+'\')">'+start52+' - ' + end52 + '</button></li>').appendTo($('#Appts'));
 		}
 		else if($('#usernameInput').val() == ""){
 			location.reload(true);
