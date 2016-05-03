@@ -21,29 +21,47 @@ var getID = function(){
 }
 
 var fillAppts = function(){
-	$.ajax({
-		method: "GET",
-		url: "php/getAppt.php",
-		success: function(data){
-					console.log(data);
-					data = JSON.parse(data);
-					data.forEach(function(appt){
-						var date = new Date(appt['date']);
-						var apptYear = date.getUTCFullYear();
-						var apptMonth = date.getUTCMonth();
-						var apptDay = date.getUTCDate();
-						var apptTime = appt['time'];
-						console.log(appt['dentist']);
-						apptTime = apptTime.substring(0,5);
-						if(apptYear == year && apptMonth == month){
-							$('#'+apptDay).children("ul").append('<li><button id="appt'+appt['id']+'">'
-									+apptTime+' '+appt['type']+'<br> Dentist:'+appt['dentist']+'<br> Hygienist:'+appt['hygienist']+'<br> Patient:'+appt['patient']+
-									'</button></li>');
-						}
-						deleteAppt(appt['id']);
-					});
-				}
-	});
+		$.ajax({
+			method: "GET",
+			url: "php/getAppt.php",
+			success: function(data){
+						data = JSON.parse(data);
+						data.sort(function(a, b){
+							var date = (a['date'] + " " + a['time']).split(/[- :]/);
+							var d = new Date(date[0],date[1]-1, date[2], date[3], date[4], date[5]);
+							var date2 = (b['date'] + " " + b['time']).split(/[- :]/);
+							var d2 = new Date(date2[0],date2[1]-1, date2[2], date2[3], date2[4], date2[5]);
+							return d - d2;	
+						});
+						data.forEach(function(appt){
+							var date = new Date(appt['date']);
+							var apptYear = date.getUTCFullYear();
+							var apptMonth = date.getUTCMonth();
+							var apptDay = date.getUTCDate();
+							var apptTime = appt['time'];
+							var apptType = appt['type'];
+							apptTime = apptTime.substring(0,5);
+							if(apptYear == year && apptMonth == month){
+								if(apptType == "Time Off"){
+									if(appt['dentist'] == null){
+										$('#' + apptDay).children("ul").append('<li class = "appt"><button id = "appt'+appt['id']+'">'
+											+apptType+ ' for ' + appt['hygienist'] + '</button></li>');
+									}
+									else {
+										$('#' + apptDay).children("ul").append('<li class = "appt"><button id = "appt'+appt['id']+'">'
+											+apptType+ ' for ' + appt['dentist'] + '</button></li>');
+									}
+								}
+								else{
+								$('#'+apptDay).children("ul").append('<li class = "appt"><button id="appt'+appt['id']+'">'
+										+apptTime+' '+appt['type']+'<br> Dentist:'+appt['dentist']+'<br> Hygienist:'+appt['hygienist']+'<br> Patient:'+appt['patient']+
+										'</button></li>');
+								}
+							}
+							deleteAppt(appt['id']);
+						});
+					}
+		});
 }
 
 var deleteAppt = function(apptID){
@@ -111,14 +129,14 @@ var edtDayApt = function(monthPoll, yearPoll, dayPoll, dentistID){
 	//console.log(data);
 	data52 = JSON.parse(data52);
 	data52.forEach(function(appt52){
-		if(appt52['hygienist']!=null && appt52['id']!=null){
-			$('<li><button onclick="createApptment(\''+start52+'\', \''+end52+'\', \''+dentistID+'\', \''+appt52['hygienist']+'\')">'+start52+' Dentist ID: ' + dentistID + ' </button></li>').appendTo($('#Appts'));
+		if(appt52['hygienist']!=null && appt52['id']!=null && end52!=null){
+			$('<li><button onclick="createApptment(\''+start52+'\', \''+end52+'\', \''+dentistID+'\', \''+appt52['hygienist']+'\')">'+start52+' - ' + end52 + '</button></li>').appendTo($('#Appts'));
 		}
 	});
 }
 
 var createApptment = function(start1, end1, dent1, hyg){
-	console.log("month = "+$('#monthApt').val());
+	//console.log("month = "+$('#monthApt').val());
 	$.ajax({
 		method: "POST",
 		url: "php/addApt.php",

@@ -33,7 +33,7 @@
 	echo json_encode($strSQL);
 	mysqli_query($link, $strSQL) or die(mysqli_error($link));
 	
-	header('Location: /calendar.php');
+	header('Location: /calendarAdmin.php');
 
 	mysqli_close($link);
 ?>
