@@ -18,19 +18,25 @@
 			<li><a href=" ">Account</a></li>
 			<li><a href=" ">About Us</a></li>
 			<li><a href=" ">Contact Info</a></li>
+			<li style = "float:right;"><form method="post" action="php/logout.php"><input type="submit" value="logout"></form></li>
 		</ul>
 		<?php
 			session_start();
 			echo("<h1> Hello ".$_SESSION['Username']." </h1>");
 		?>
+		<div class = "hideandclose">
+			<button onclick="toggleCalendar()">Hide/Show</button>
+			<button onclick="toggleApt()">Close</button>
+		</div>
 		<div class = "right">
-			<ul class = "nav">
-				<li><select name="dentistselect" id = "selectID">
+				<h2 style = "padding: 10px;">Appointment Information</h2><br>
+				<h3>Pick a dentist</h3><br>
+				<select name="dentistselect" id = "selectID">
 					<?php
 						$link = mysqli_connect("localhost", "root", "security") or die(mysqli_error());
 						mysqli_select_db($link, "new_schema") or die(mysqli_error($link));
 
-						$result = mysqli_query($link, "select EmployeeID, lastname from Employees where EmpType = 'Dentist'");
+						$result = mysqli_query($link, "select EmployeeID, lastname from Employees natural join Usernames where EmpType = 'Dentist'");
 						while($row = mysqli_fetch_array($result)){
 							$name = $row['lastname'];
 							$id = $row['EmployeeID'];
@@ -38,19 +44,13 @@
 						}
 						mysqli_close($link);
 					?>
-					</select></li>
-				<li><select name = "typeselect" id = "typeselectID">
+					</select>
+				<h3>Appointment type</h3><br>
+				<select name = "typeselect" id = "typeselectID">
 					<option value = "cleaning">Cleaning</option>
 					<option value = "rootcanal">Root Canal</option>
-					</select></li>
-			</ul>
+					</select>
 		</div>
-		<form method="post" action="php/logout.php">
-			<input type="submit" value="logout"></input>
-		</form>
-		<button onclick="toggleCalendar()">Hide/Show</button>
-		<button onclick="toggleApt()">Close</button>
-		
 		<table id="create" style="display:none">
 			<tr>
 				<td colspan="4">
@@ -70,7 +70,7 @@
 				</td>
 			</tr>
 		</table>
-		<table id="calendar" style = "width: 80%;">
+		<table id="calendar">
 			<tr>
 				<td colspan="7">
 					<!--<button onclick="showAppt()">Show Appointments</button>

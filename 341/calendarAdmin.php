@@ -26,10 +26,14 @@
 			session_start();
 			echo("<h1>" . $_SESSION['Username'] . " " . $_SESSION['ID'] . " " . $_SESSION['idstuff'] . " </h1>");
 		?>
+		<div class = "hideandclose">
+				<button onclick="toggleCalendar()">Hide/Show</button>
+				<button onclick="toggleApt()">Close</button>
+		</div>
 		<div class = "right">
-			<ul class = "nav">
-				<h2>Appointment Information</h2>
-				<li><select name="dentistselect" id = "selectID">
+				<h2 style = "padding: 10px;">Appointment Information</h2><br>
+				<h3>Pick a dentist</h3><br>				
+				<select style = name="dentistselect" id = "selectID">
 					<?php
 						$link = mysqli_connect("localhost", "root", "security") or die(mysqli_error());
 						mysqli_select_db($link, "new_schema") or die(mysqli_error($link));
@@ -42,20 +46,18 @@
 						}
 						mysqli_close($link);
 					?>
-					</select></li>
-				<li><select name = "typeselect" id = "typeselectID">
+					</select><br>
+				<h3>Appointment type</h3><br>
+				<select name = "typeselect" id = "typeselectID">
 					<option value = "cleaning">Cleaning</option>
 					<option value = "rootcanal">Root Canal</option>
-					</select></li>
-				<li><input type = "text" id = "usernameInput" placeholder = "Patient username"></li>
-			</ul>
+					</select><br>
+				<h3>Patient</h3><br>
+				<input style = "width: 180px;" type = "text" id = "usernameInput" placeholder = "Patient username">
 		</div>
 		<!--<form method="post" action="php/logout.php">
 			<input type="submit" value="logout"></input>
 		</form>-->
-		<button onclick="toggleCalendar()">Hide/Show</button>
-			<button onclick="toggleApt()">Close</button>
-		
 			<table id="create" style="display:none">
 				<tr>
 					<td colspan="5">

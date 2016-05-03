@@ -108,11 +108,17 @@ var fillAppts = function(){
 							apptTime = apptTime.substring(0,5);
 							if(apptYear == year && apptMonth == month){
 								if(apptType == "Time Off"){
-									$('#' + apptDay).children("ul").append('<li><button id = "appt'+appt['id']+'">'
-										+apptType+ ' for ' + appt['hygienist'] + '</button></li>');
+									if(appt['dentist'] == null){
+										$('#' + apptDay).children("ul").append('<li class = "appt"><button id = "appt'+appt['id']+'">'
+											+apptType+ ' for ' + appt['hygienist'] + '</button></li>');
+									}
+									else {
+										$('#' + apptDay).children("ul").append('<li class = "appt"><button id = "appt'+appt['id']+'">'
+											+apptType+ ' for ' + appt['dentist'] + '</button></li>');
+									}
 								}
 								else{
-								$('#'+apptDay).children("ul").append('<li><button id="appt'+appt['id']+'">'
+								$('#'+apptDay).children("ul").append('<li class = "appt"><button id="appt'+appt['id']+'">'
 										+apptTime+' '+appt['type']+'<br> Dentist:'+appt['dentist']+'<br> Hygienist:'+appt['hygienist']+'<br> Patient:'+appt['patient']+
 										'</button></li>');
 								}
@@ -191,7 +197,9 @@ var addToList = function(start52, end52, data52, dentistID){
 		if(appt52['hygienist']!=null && appt52['id']!=null && $('#usernameInput').val() != ""){
 			$('<li><button onclick="createApptment(\''+start52+'\', \''+end52+'\', \''+dentistID+'\', \''+appt52['hygienist']+'\')">'+start52+' Dentist ID: ' + dentistID + ' </button></li>').appendTo($('#Appts'));
 		}
-		else location.reload(true);
+		else if($('#usernameInput').val() == ""){
+			location.reload(true);
+		}
 	});
 }
 
