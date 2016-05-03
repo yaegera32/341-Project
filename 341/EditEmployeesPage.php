@@ -25,6 +25,7 @@
 			<ul id = "actions">
 				<li><a href = "#" class = "contentLink" data-type = "dentist">Dentists</a></li>
 				<li><a href = "#" class = "contentLink" data-type = "hygienist">Hygienists</a></li>
+				<li><a href = "#" class = "contentLink" data-type = "patient">Patient</a></li>
 				<li><a href = "#" class = "contentLink"	data-type = "addnew">Add a New Employee</a></li>
 			</ul>
 		</div>		
