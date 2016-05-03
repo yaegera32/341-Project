@@ -30,15 +30,6 @@ var addDentistTimeOff = function(){
 	
 	console.log(month + " " + day + " " + year + " " + id);
 	
-	/*$.ajax({
-		method: "GET",
-		url: "php/ClearTimeOffDentists.php",
-		data: ({id: id,month: month, day: day, year: year}),
-		success: function(){
-					addDentistAppointmentOff(year,day,month,id);
-				}
-	});*/
-	
 	$.ajax({
 		method: "POST",
 		url: "php/AddTimeOffForDentist.php",
