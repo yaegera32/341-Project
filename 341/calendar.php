@@ -11,13 +11,10 @@
 	</head>
 	<body onload="setToday()">
 		<div id = "header">
-			<h1> Website Title</h1>
+			<h1>Dental Express Staffing</h1>
 		</div>
 		<ul id = "links">
-			<li><a href=" ">Home</a></li>
-			<li><a href=" ">Account</a></li>
-			<li><a href=" ">About Us</a></li>
-			<li><a href=" ">Contact Info</a></li>
+			<li><a href="calendar.php">Home</a></li>
 			<li style = "float:right;"><form method="post" action="php/logout.php"><input type="submit" value="logout"></form></li>
 		</ul>
 		<?php
@@ -73,8 +70,6 @@
 		<table id="calendar">
 			<tr>
 				<td colspan="7">
-					<!--<button onclick="showAppt()">Show Appointments</button>
-					<button onclick="showAvailable()">Show Availability</button>-->
 					<select id="monthJump">
 						<option value="0">January</option>
 						<option value="1">February</option>

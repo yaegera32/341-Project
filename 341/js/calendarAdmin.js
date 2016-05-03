@@ -36,8 +36,8 @@ var addDentistTimeOff = function(){
 		data: ({year: year,day: day,month: month, dentist: id}),
 		success: function(data){
 					console.log(data);
-					location.reload(true);
-				}
+					window.location.replace("calendarAdmin.php");				
+		}
 	});	
 	
 }
@@ -71,7 +71,7 @@ var addHygienistTimeOff = function(){
 		data: ({year: year,day: day,month: month,hygienist: id}),
 		success: function(data){
 					console.log(data);
-					location.reload(true);
+					window.location.replace("localhost:8000/calendarAdmin.php");
 				}
 	});
 }

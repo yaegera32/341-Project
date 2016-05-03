@@ -15,9 +15,6 @@
 		</div>
 		<ul id = "links">
 			<li><a href="calendarAdmin.php">Home</a></li>
-			<li><a href=" ">Account</a></li>
-			<li><a href=" ">About Us</a></li>
-			<li><a href=" ">Contact Info</a></li>
 			<li><a href="EditEmployeesPage.php">Account Management</a></li>
 			<li style = "float:right;"><form method="post" action="php/logout.php"><input type="submit" value="logout"></input></form></li>
 		</ul>

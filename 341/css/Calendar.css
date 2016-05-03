@@ -8,6 +8,7 @@
     background: #1abc9c;
 }
 .right {
+    padding-bottom: 20px;
 	width: 20%;
     height: 100%;
     margin: auto;

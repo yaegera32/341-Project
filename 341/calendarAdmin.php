@@ -15,10 +15,7 @@
 		</div>
 		
 		<ul id = "links">
-			<li><a href=" ">Home</a></li>
-			<li><a href=" ">Account</a></li>
-			<li><a href=" ">About Us</a></li>
-			<li><a href=" ">Contact Info</a></li>
+			<li><a href="calendarAdmin.php">Home</a></li>
 			<li><a href="EditEmployeesPage.php">Account Management</a></li>
 			<li style = "float:right;"><form method="post" action="php/logout.php"><input type="submit" value="logout"></input></form></li>
 		</ul>
@@ -74,8 +71,6 @@
 		<table id="calendar">
 			<tr>
 				<td colspan="7">
-					<button onclick="showAppt()">Show Appointments</button>
-					<button onclick="showAvailable()">Show Availability</button>
 					<select id="monthJump">
 						<option value="0">January</option>
 						<option value="1">February</option>
