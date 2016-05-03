@@ -18,7 +18,7 @@
 			<li><a href=" ">Account</a></li>
 			<li><a href=" ">About Us</a></li>
 			<li><a href=" ">Contact Info</a></li>
-			<li><a href="EditEmployeesPage.php">Employees</a></li>
+			<li><a href="EditEmployeesPage.php">Account Management</a></li>
 			<li style = "float:right;"><form method="post" action="php/logout.php"><input type="submit" value="logout"></input></form></li>
 		</ul>
 		<div id = "actionbar">
@@ -67,6 +67,30 @@
 			<input type="number" id="year" placeholder = "Year">
 			<input type="number" id="day" placeholder = "Day">
 			<button id = "addtimeoff" onclick = "addDentistTimeOff()">Add Time Off</button>
+		</div>
+				<div id = "patient" class="contentDiv">
+			<h1 style = "text-align: center;">
+				Patients
+			</h1>
+			<form id = "delete" method = "post" action = "php/deleteEmployee.php">
+			<select name="select" id = "selectPatientID">
+					<?php
+						$link = mysqli_connect("localhost", "root", "security") or die(mysqli_error());
+						mysqli_select_db($link, "new_schema") or die(mysqli_error($link));
+
+						$result = mysqli_query($link, "select PatientID, firstname, lastname from Patients natural join Usernames");
+						while($row = mysqli_fetch_array($result)){
+							$firstname = $row['firstname'];
+							$lastname = $row['lastname'];
+							$id = $row['PatientID'];
+							echo("<option value = '".$id."'>".$firstname." ".$lastname."</option>");
+						}
+						mysqli_close($link);
+					?>
+					</select>
+			<input name = "delete" type = "submit" value = "Delete">
+			</form>
+			
 		</div>
 		<div id = "hygienist" class="contentDiv">
 			<h1 style = "text-align:center;">
