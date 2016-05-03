@@ -72,7 +72,7 @@
 			<h1 style = "text-align: center;">
 				Patients
 			</h1>
-			<form id = "delete" method = "post" action = "php/deleteEmployee.php">
+			<form id = "delete" method = "post" action = "php/deletePatient.php">
 			<select name="select" id = "selectPatientID">
 					<?php
 						$link = mysqli_connect("localhost", "root", "security") or die(mysqli_error());
