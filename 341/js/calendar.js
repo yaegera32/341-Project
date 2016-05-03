@@ -280,7 +280,7 @@ var displayCalendar = function(month, year) {
 		}
 		dayNum++;
 	}
-	
+
 	fillAppts();
 }
 
