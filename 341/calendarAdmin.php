@@ -65,13 +65,6 @@
 					</td>
 				</tr>
 				<tr>
-					<td><input id="typeApt" type="text" name="type" placeholder="Type"></td>
-					<td><input id="monthApt" type="text" name="month" placeholder="Month"></td>
-					<td><input id="dayApt" type="number" name="day" placeholder="Day"></td>
-					<td><input id="yearApt" type="number" name="year" placeholder="Year"></td>
-					<td><input id="patientID" type="number" name="patientID" placeholder="Patient ID"></td>
-				</tr>
-				<tr>
 					<td colspan="5">
 						<ul id="Appts">
 						</ul>
