@@ -6,8 +6,11 @@
 
 	$employee = $_POST["select"];
 	$strSQL = "DELETE from Usernames WHERE EmployeeID = ".$employee;
+	$strSQL2 = "DELETE from Appointments WHERE DentistID = ".$employee."OR HygienistID =".$employee;
+	
 
 	mysqli_query($link, $strSQL);
+	mysqli_query($link, $strSQL2);
 	mysqli_close($link);
 
 	header('Location: /EditEmployeesPage.php');
