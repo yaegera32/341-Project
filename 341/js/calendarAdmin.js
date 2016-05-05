@@ -175,18 +175,18 @@ var edtDayApt = function(monthPoll, yearPoll, dayPoll, dentistID){
 			data: ({date: yearPoll+'-'+monthSend+'-'+daySend,time: openTime[i],endTime:openTime[i+typeLength], id: dentistID}),
 			success: function(data){
 						console.log(data);
-						addToList(openTime[i], openTime[i+typeLength], data, dentistID);
+						addToList(openTime[i], openTime[i+typeLength], data, dentistID, type);
 			}
 		});
 	}
 }
 			   
-var addToList = function(start52, end52, data52, dentistID){
+var addToList = function(start52, end52, data52, dentistID,type){
 	//console.log(data);
 	data52 = JSON.parse(data52);
 	data52.forEach(function(appt52){
-		if(appt52['hygienist']!=null && appt52['id']!=null && $('#usernameInput').val() != ""){
-			$('<li><button onclick="createApptment(\''+start52+'\', \''+end52+'\', \''+dentistID+'\', \''+appt52['hygienist']+'\')">'+start52+' - ' + end52 + '</button></li>').appendTo($('#Appts'));
+		if(appt52['hygienist']!=null && appt52['id']!=null && $('#usernameInput').val() != "" && end52!=null){
+			$('<li><button onclick="createApptment(\''+start52+'\', \''+end52+'\', \''+dentistID+'\', \''+appt52['hygienist']+'\', \''+type+'\')">'+start52+' - ' + end52 + '</button></li>').appendTo($('#Appts'));
 		}
 		else if($('#usernameInput').val() == ""){
 			location.reload(true);
@@ -194,11 +194,11 @@ var addToList = function(start52, end52, data52, dentistID){
 	});
 }
 
-var createApptment = function(start1, end1, dent1, hyg){
+var createApptment = function(start1, end1, dent1, hyg, type){
 		$.ajax({
 			method: "POST",
 			url: "php/addApt.php",
-			data: ({year: $('#yearApt').val(),day: $('#dayApt').val(),month: monthNum[$('#monthApt').val()],start: start1,hygienist: hyg, dentist: dent1, patient: 11,type: $('#typeApt').val(), end: end1, username: $('#usernameInput').val()}),
+			data: ({year: $('#yearApt').val(),day: $('#dayApt').val(),month: monthNum[$('#monthApt').val()],start: start1,hygienist: hyg, dentist: dent1, patient: 11,type: type, end: end1, username: $('#usernameInput').val()}),
 			success: function(data){
 						location.reload(true);
 					}
@@ -330,7 +330,9 @@ var displayCalendar = function(month, year) {
 		} else{
 			$('#w'+week).append($('<td id="'+dayNum+'" class="day"><p id="add'+dayNum+'">'+dayNum+'</p><ul></ul></td>'));
 		}
-		$('#add'+dayNum).click(clickAdder(month, year, dayNum));
+		if(i%7!=0 && i%7!=6){
+			$('#add'+dayNum).click(clickAdder(month, year, dayNum));
+		}
 		dayNum++;
 	}
 	fillAppts();

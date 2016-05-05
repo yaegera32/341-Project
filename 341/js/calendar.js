@@ -110,7 +110,7 @@ var edtDayApt = function(monthPoll, yearPoll, dayPoll, dentistID){
 			typeLength = 3;
 			break;
 	}
-	
+	console.log(type);
 	for(var i=0; i<openTime.length-1; i++){
 		$.ajax({
 			async: false,
@@ -119,30 +119,33 @@ var edtDayApt = function(monthPoll, yearPoll, dayPoll, dentistID){
 			data: ({date: yearPoll+'-'+monthSend+'-'+daySend,time: openTime[i],endTime:openTime[i+typeLength], id: dentistID}),
 			success: function(data){
 						console.log(data);
-						addToList(openTime[i], openTime[i+typeLength], data, dentistID);
+						addToList(openTime[i], openTime[i+typeLength], data, dentistID, type);
 			}
 		});
 	}
 }
 			   
-	var addToList = function(start52, end52, data52, dentistID){
+	var addToList = function(start52, end52, data52, dentistID, type){
 	//console.log(data);
 	data52 = JSON.parse(data52);
 	data52.forEach(function(appt52){
 		if(appt52['hygienist']!=null && appt52['id']!=null && end52!=null){
-			$('<li><button onclick="createApptment(\''+start52+'\', \''+end52+'\', \''+dentistID+'\', \''+appt52['hygienist']+'\')">'+start52+' - ' + end52 + '</button></li>').appendTo($('#Appts'));
+			$('<li><button onclick="createApptment(\''+start52+'\', \''+end52+'\', \''+dentistID+'\', \''+appt52['hygienist']+'\', \''+type+'\')">'+start52+' - ' + end52 + '</button></li>').appendTo($('#Appts'));
 		}
 	});
 }
 
-var createApptment = function(start1, end1, dent1, hyg){
-	//console.log("month = "+$('#monthApt').val());
+var createApptment = function(start1, end1, dent1, hyg, type){
+	console.log("month = "+$('#monthApt').val());
+	console.log("year: " +$('#yearApt').val());
+	console.log("day: " +$('#dayApt').val());
+	console.log("type: " + type);
 	$.ajax({
 		method: "POST",
 		url: "php/addApt.php",
-		data: ({year: $('#yearApt').val(),day: $('#dayApt').val(),month: monthNum[$('#monthApt').val()],start: start1,hygienist: hyg, dentist: dent1, patient: id,type: $('#typeApt').val(), end: end1}),
+		data: ({year: $('#yearApt').val(),day: $('#dayApt').val(),month: monthNum[$('#monthApt').val()],start: start1,hygienist: hyg, dentist: dent1, patient: id,type: type, end: end1}),
 		success: function(data){
-					//console.log(data);
+					console.log(data);
 					location.reload(true);
 				}
 	});
@@ -272,7 +275,9 @@ var displayCalendar = function(month, year) {
 		} else{
 			$('#w'+week).append($('<td id="'+dayNum+'" class="day"><p id="add'+dayNum+'">'+dayNum+'</p><ul></ul></td>'));
 		}
-		$('#add'+dayNum).click(clickAdder(month, year, dayNum));
+		if(i!=0 && i !=6){
+			$('#add'+dayNum).click(clickAdder(month, year, dayNum));
+		}
 		dayNum++;
 	}
 	

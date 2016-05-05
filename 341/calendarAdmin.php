@@ -11,7 +11,7 @@
 	</head>
 	<body onload="setToday()">
 		<div id = "header">
-			<h1> Website Title</h1>
+			<h1>Dental Express Staffing</h1>
 		</div>
 		
 		<ul id = "links">
@@ -60,6 +60,12 @@
 					<td colspan="5">
 						<button onclick="createApptment()">Add Appointment</input>
 					</td>
+				</tr>
+				<tr style="display: none;">
+					<td><input id="typeApt" type="text" name="type" placeholder="Type"></td>
+					<td><input id="monthApt" type="text" name="month" placeholder="Month"></td>
+					<td><input id="dayApt" type="number" name="day" placeholder="Day"></td>
+					<td><input id="yearApt" type="number" name="year" placeholder="Year"></td>
 				</tr>
 				<tr>
 					<td colspan="5">

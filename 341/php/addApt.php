@@ -30,7 +30,6 @@
 			//echo json_encode($patientID[0]);
 		}
 	}
-	else exit();
 	$date = $year . "-" . $month . "-" . $day;
 	
 	$time = $date. " " .$start . ":00";

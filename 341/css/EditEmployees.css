@@ -19,3 +19,8 @@
 	float:left;
 	padding:10px;
 }
+
+.actions li{
+	display: block;
+	padding: 10px;
+}

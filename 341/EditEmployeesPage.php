@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>
-			Employees
+			Account Management
 		</title>
 		<script src="js/calendarAdmin.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -11,18 +11,18 @@
 	</head>
 	<body>
 		<div id = "header">
-			<h1> Website Title</h1>
+			<h1>Dental Express Staffing</h1>
 		</div>
 		<ul id = "links">
 			<li><a href="calendarAdmin.php">Home</a></li>
 			<li><a href="EditEmployeesPage.php">Account Management</a></li>
 			<li style = "float:right;"><form method="post" action="php/logout.php"><input type="submit" value="logout"></input></form></li>
 		</ul>
-		<div id = "actionbar">
+		<div class = "actions" id = "actionbar">
 			<ul id = "actions">
 				<li><a href = "#" class = "contentLink" data-type = "dentist">Dentists</a></li>
 				<li><a href = "#" class = "contentLink" data-type = "hygienist">Hygienists</a></li>
-				<li><a href = "#" class = "contentLink" data-type = "patient">Patient</a></li>
+				<li><a href = "#" class = "contentLink" data-type = "patient">Patients</a></li>
 				<li><a href = "#" class = "contentLink"	data-type = "addnew">Add a New Employee</a></li>
 			</ul>
 		</div>		
