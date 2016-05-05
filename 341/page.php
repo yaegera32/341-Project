@@ -16,9 +16,7 @@
 		
 		<ul id = "links">
 			<li><a href=" ">Home</a></li>
-			<li><a href=" ">Account</a></li>
-			<li><a href=" ">About Us</a></li>
-			<li><a href=" ">Contact Info</a></li>
+
 		</ul>
 		<div id = "content">
 

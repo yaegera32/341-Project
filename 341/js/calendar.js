@@ -275,7 +275,7 @@ var displayCalendar = function(month, year) {
 		} else{
 			$('#w'+week).append($('<td id="'+dayNum+'" class="day"><p id="add'+dayNum+'">'+dayNum+'</p><ul></ul></td>'));
 		}
-		if(i!=0 && i !=6){
+			if(i%7!=0 && i%7!=6){
 			$('#add'+dayNum).click(clickAdder(month, year, dayNum));
 		}
 		dayNum++;
